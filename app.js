@@ -1,5 +1,10 @@
 const express = require('express');
-
+const mongoose = require('mongoose');
+mongoose.connect('mongodb+srv://?retryWrites=true&w=majority&appName=Cluster0',
+  { useNewUrlParser: true,
+    useUnifiedTopology: true })
+  .then(() => console.log('Connexion à MongoDB réussie !'))
+  .catch(() => console.log('Connexion à MongoDB échouée !'));
 const app = express();
 app.post('/api/stuff', (req, res, next) => {
     console.log(req.body);
@@ -36,5 +41,8 @@ app.use('/api/stuff', (req, res, next) => {
     ];
     res.status(200).json(stuff);
   });
+  const userRoutes = require('./routes/user');
+  app.use('/api/stuff', stuffRoutes);
+  app.use('/api/auth', userRoutes);
 
 module.exports = app;

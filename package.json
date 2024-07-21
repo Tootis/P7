@@ -2,6 +2,8 @@
   "name": "back",
   "main": "server.js",
   "dependencies": {
-    "express": "^4.19.2"
+    "express": "^4.19.2",
+    "mongoose": "^8.4.4",
+    "mongoose-unique-validator": "^5.0.1"
   }
 }
